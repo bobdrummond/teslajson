@@ -25,6 +25,8 @@ except: # Python 2
 import json
 import datetime
 import calendar
+import logging
+_LOG = logging.getLogger(__name__)
 
 class Connection(object):
 	"""Connection to Tesla Motors API"""
@@ -100,6 +102,7 @@ class Connection(object):
 				req.add_data(urlencode(data)) # Python 2
 			except:
 				pass
+		_LOG.debug('REQ: %s%s headers=%r' % (baseurl,url, headers))
 
 		# Proxy support
 		if self.proxy_url:
